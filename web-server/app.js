@@ -1,5 +1,5 @@
 var express = require('express');
-var app = express.createServer();
+var app = express();
 
 app.configure(function(){
   app.use(express.methodOverride());
@@ -21,8 +21,6 @@ app.configure('production', function(){
   app.use(express.static(__dirname + '/public', { maxAge: oneYear }));
   app.use(express.errorHandler());
 });
-
-app.use();
 
 console.log("Web server has started.\nPlease log on http://127.0.0.1:3001/index.html");
 

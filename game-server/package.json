@@ -1,9 +1,11 @@
 {
-    "name":"game",
-    "version":"0.0.1",
-    "private":false,
-    "dependencies":{
-        "pomelo":"1.2.3"
-    }
+  "name": "game",
+  "version": "0.0.1",
+  "private": false,
+  "dependencies": {
+    "mysql": "^2.12.0",
+    "path": "^0.12.7",
+    "pomelo": "1.2.3",
+    "sequelize": "^3.25.0"
+  }
 }
-

@@ -20,6 +20,7 @@
       var pomelo = window.pomelo;
       var host = "127.0.0.1";
       var port = "3010";
+      var gate_port = '3014';
       function show() {
         pomelo.init({
           host: host,
@@ -30,6 +31,30 @@
             alert(data.msg);
           });
         });
+      }
+      function login(){
+        var uid = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+        
+        var route = 'gate.gateHandler.queryEntry';
+        pomelo.init({
+          host: host,
+          port: gate_port,
+          log: true
+        }, function(){
+          console.log('pomelo init complete');
+          pomelo.request(route,{
+            uid: uid,
+            password: password
+          }, function(data){
+            pomelo.disconnect();
+            if(data.code === 500) {
+              alert("LOGIN_ERROR");
+              return;
+            }
+            alert("LOGIN_SUCESS : " + data.host +", "+data.port);
+          });
+        });       
       }
     </script>
  
@@ -52,6 +77,15 @@
       </div>
       <div class="g-button">
         <input id="test" type="button" value="Test Game Server" onclick="show()"/>
+      </div>
+      <div>
+        <input id="email" type="text" placeholder="email"/>
+      </div>
+      <div>
+        <input id="password" type="password" placeholder="password"/>
+      </div>
+      <div class="g-button">
+        <input id="login" type="button" value="Server Login Test" onclick="login()"/>
       </div>
     </div>
   </body>
